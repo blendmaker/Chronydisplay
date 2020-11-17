@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
     void updateInput(String s) {
         if (s.isEmpty()) { return; } // omit faulty values
         float mps = Float.parseFloat(s);
-        float weight = Float.parseFloat(txtWeight.getText().toString());
+        float weight = Float.parseFloat(txtWeight.getText().toString().replace(",", "."));
 
         if (mps <= 0 || weight <= 0) { return; } // omit faulty values
 
