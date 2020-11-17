@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chrony</string>
+    <string name="label_weight">Gewicht in gr:</string>
+    <string name="label_ms">m/s</string>
+    <string name="label_fps">fps</string>
+    <string name="label_joule">Joule</string>
+    <string name="label_measurements">Messungen</string>
+    <string name="clear_items">clear list items</string>
+</resources>
