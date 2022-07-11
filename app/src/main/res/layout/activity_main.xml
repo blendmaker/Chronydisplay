@@ -31,11 +31,34 @@
 
             <SeekBar
                 android:id="@+id/weight"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_weight"
+                android:layout_toRightOf="@+id/btn_lighter"
+                android:layout_toLeftOf="@id/btn_heavier"
+                android:layout_marginTop="15dp"
                 android:max="100"
                 android:progress="25" />
+
+            <Button
+                android:id="@+id/btn_lighter"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_weight"
+                android:layout_alignParentLeft="true"
+                android:text="&lt;"
+                android:textColor="@color/design_default_color_background"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/btn_heavier"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/txt_weight"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:text="&gt;"
+                android:textColor="@color/design_default_color_background"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
 
         <TextView
@@ -49,7 +72,7 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:stretchColumns="*"
             android:scrollbars="vertical"
             android:id="@+id/list">

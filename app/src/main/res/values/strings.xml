@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Chrony</string>
-    <string name="label_weight">Gewicht in gr:</string>
-    <string name="label_ms">m/s</string>
-    <string name="label_fps">fps</string>
-    <string name="label_joule">Joule</string>
-    <string name="label_measurements">Messungen</string>
-    <string name="clear_items">clear list items</string>
+    <string name="app_name" translatable="false">Chrony</string>
+    <string name="label_weight">Weight in gr:</string>
+    <string name="label_ms" translatable="false">m/s</string>
+    <string name="label_fps" translatable="false">fps</string>
+    <string name="label_joule" translatable="false">Joule</string>
+    <string name="label_measurements">Measurments</string>
+    <string name="clear_items">Clear list</string>
 </resources>

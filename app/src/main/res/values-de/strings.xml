@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_weight">Gewicht in gr:</string>
+    <string name="label_measurements">Messungen</string>
+    <string name="clear_items">Liste leeren</string>
+</resources>

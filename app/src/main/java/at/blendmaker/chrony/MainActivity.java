@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
     private final static String REQUEST_PERMISSION_ACTION =
             "at.blendmaker.chrony.REQUEST_PERMISSION_ACTION";
 
+    private final StringBuffer usbSerialBuffer = new StringBuffer();
+
     @ViewById(R.id.txt_val_weight)
     TextView txtWeight;
 
@@ -129,9 +131,16 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
     @Override
     public void onNewData(byte[] data) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            updateInput( new String(data, StandardCharsets.UTF_8) );
+            usbSerialBuffer.append(new String(data, StandardCharsets.UTF_8));
         } else {
-            updateInput( new String(data, Charset.forName("UTF-8")) );
+            usbSerialBuffer.append(new String(data, Charset.forName("UTF-8")));
+        }
+        if (usbSerialBuffer.indexOf(";") >= 0) {
+            float mps = Float.parseFloat( usbSerialBuffer.substring(0, usbSerialBuffer.indexOf(";")) );
+            usbSerialBuffer.delete(0, usbSerialBuffer.indexOf(";") + 1);
+            if (mps > 0f) {
+                updateInput(mps);
+            }
         }
     }
 
@@ -142,10 +151,8 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
 
     @SuppressLint("DefaultLocale")
     @UiThread
-    void updateInput(String s) {
-        if (s.isEmpty()) { return; } // omit faulty values
-        float mps = Float.parseFloat(s);
-        float weight = Float.parseFloat(txtWeight.getText().toString().replace(",", "."));
+    void updateInput(Float mps) {
+        float weight = getCurrentWeight();
 
         if (mps <= 0 || weight <= 0) { return; } // omit faulty values
 
@@ -165,6 +172,20 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
         while (list.getChildCount() > 1) {
             list.removeViewAt(1);
         }
+    }
+
+    @Click(R.id.btn_lighter)
+    void lighterClicked() {
+        txtWeight.setText( String.format("%.2f", (getCurrentWeight() - 0.01f) ) );
+    }
+
+    @Click(R.id.btn_heavier)
+    void heavierClicked() {
+        txtWeight.setText( String.format("%.2f", (getCurrentWeight() + 0.01f) ) );
+    }
+
+    private Float getCurrentWeight() {
+        return Float.parseFloat(txtWeight.getText().toString().replace(",", "."));
     }
 
     private static float calcEnergy(float weight, float speed) {
