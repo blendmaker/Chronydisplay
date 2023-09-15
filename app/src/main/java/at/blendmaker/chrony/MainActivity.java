@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
                     this,
                     0,
                     new Intent(REQUEST_PERMISSION_ACTION),
-                    0));
+                    PendingIntent.FLAG_UPDATE_CURRENT));
         }
 
         if (usbDevice == null) {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements SerialInputOutput
                     this,
                     0,
                     new Intent(REQUEST_PERMISSION_ACTION),
-                    0));
+                    PendingIntent.FLAG_UPDATE_CURRENT));
             return;
         }
 
